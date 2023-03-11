@@ -1,0 +1,97 @@
+
+.header{
+    background-color: gray;
+    display: flex;
+    justify-content:space-around;
+    align-items: baseline;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.next{
+    font-size: 30px;
+
+}
+
+/* body */
+
+.main{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5%;
+    /* justify-content: space-between; */
+}
+
+.main form{
+    display: inline-block;
+}
+
+label, input {
+    display: block;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+label select{
+    display: block;
+    margin-top: 5px;
+}
+
+label input{
+    margin-top: 5px;
+}
+
+select {
+    display: none; /*hide original SELECT element:*/
+  }
+
+.main div{
+    
+    display: inline-block;
+    position: absolute;
+    margin-left: 55%;
+    margin-bottom:30% ;
+}
+
+button{
+    margin-bottom: 20px;
+}
+/* image */
+#rowTable{
+    border-radius: 100;
+    height: 300px;
+    width: 300px;
+    margin-bottom: 60px;
+}
+
+
+
+#empTable{
+    text-align: center;
+    display: block;
+}
+
+th{
+  width: 150px;
+  text-align: center;
+  border: 1px solid black;
+  padding: 5px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: block;
+    background-color: silver;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.link{
+    margin: 10px 20px;
+}
