@@ -1,25 +1,28 @@
 'use strict';
 
+const allCv = [];
+let c = 1000;
+
+function FirstCon(Employee_ID,Full_Name,Department,Level,Salary,IMg) {
 
 
-function FirstCon(employees) {
+    this.Employee_ID = Employee_ID;
 
+    this.Full_Name = Full_Name;
 
-    this.Employee_ID = getRandomId();
+    this.Department = Department;
 
-    this.Full_Name = employees.Full_Name;
+    this.Level = Level;
 
-    this.Department = employees.Department;
+    this.Image_URL = IMg;
 
-    this.Level = employees.Level;
+    this.Salary = 0;
 
-    this.Image_URL = employees.IMg;
-
-    this.Salary = this.SalaryCal(this.Level);
+    allCv.push(this);
 
 }
 
-FirstCon.prototype.SalaryCal = function salary(level) {
+FirstCon.prototype.Salary =function salary(level) {
 
     switch (level) {
         case 'Junior':
@@ -36,7 +39,7 @@ FirstCon.prototype.SalaryCal = function salary(level) {
 
 FirstCon.prototype.render = function () {
     const empTable = document.getElementById("table");
-    //const rowTable = document.getElementById("rowTable");
+    
     empTable.innerHTML = `<img class="rowTable" src=${this.Image_URL} alt="image">
     <table class="rowTable">
         <tr>
@@ -48,31 +51,24 @@ FirstCon.prototype.render = function () {
             <th>${this.Level}</th>
         </tr>
     </table>`;
-    // const imgEL = document.createElement("img")
-    // imgEL.src = this.Image_URL;
-    // rowTable.appendChild(imgEL);
-    // empTable.innerHTML = `
-    // <tr>
-    //     <th>${this.Employee_ID}</th>
-    //     <th>${this.Full_Name}</th>
-    // </tr>
-    // <tr>
-    //     <th>${this.Department}</th>
-    //     <th>${this.Level}</th>
-    // </tr>
-    // `;
+    
 };
 
-function runderEmp(emp) {
-    emp.render()
-}
+function runderEmp() {
+    for(let i = 0 ; i < allCv.length ; i++){
+        allCv[i].Employee_ID=getRandomId();
+        allCv[i].Salary=salary(allCv[i].Level)
+        allCv[i].render();
+    }
+};
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-function getRandomId(min = 1000, max = 2000) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+function getRandomId() {
+    c+=1
+    return c;
 };
 
 function taxCal(number) {
@@ -102,20 +98,46 @@ btn.addEventListener("click", color)
 function color(event) {
     let tab = document.getElementById("table");
     tab.style.backgroundColor = "silver";
-}
+};
+
 emp.addEventListener("submit", sunBe);
+
 function sunBe(event) {
     event.preventDefault();
-    let full_name = event.target.fullname.value;
 
+    let full_name = event.target.fullname.value;
     let deparment = event.target.Department.value;
     let level = event.target.Level.value;
     let img = event.target.img.value;
 
-    let employees = { Full_Name: full_name, Department: deparment, Level: level, IMg: img };
+    
+    //let employees = { Full_Name: full_name, Department: deparment, Level: level, IMg: img };
+    
+    let push=new FirstCon(0,full_name,deparment,level,0,img);
 
-    //employeeGen()
-    let push = new FirstCon(employees);
+    console.log(push);
+    runderEmp();
+    storge(allCv);
 
-    runderEmp(push);
 };
+
+function storge(data){
+    let cvData = JSON.stringify(data);
+    localStorage.setItem('CV',cvData);
+}
+
+// getData();
+
+// function getData(){
+//     let reArr = localStorage.getItem('CV');
+//     let objArr = JSON.parse(reArr);
+//     for (let i=0;i<objArr.length;i++){
+//         new FirstCon(objArr[i].Employee_ID,
+//             objArr[i].Full_Name,
+//             objArr[i].Department,
+//             objArr[i].Level,
+//             objArr[i].Salary,
+//             objArr[i].IMg);
+//     }
+    
+// }
