@@ -41,7 +41,7 @@ function totalSal(salArr1){
 let junCal=0,midCal=0,senCal=0;
 
 function salCal(jun,sal){
-    let sum=0;
+    let sum = 0;
     sum+=sal;
     return sum/jun;
 }
