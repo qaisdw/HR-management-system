@@ -46,30 +46,36 @@ label input{
     margin-top: 5px;
 }
 
-select {
-    display: none; /*hide original SELECT element:*/
-  }
-
 .main div{
     
     display: inline-block;
     position: absolute;
     margin-left: 55%;
-    margin-bottom:30% ;
+    /* margin-bottom:30% ; */
 }
 
 button{
     margin-bottom: 20px;
 }
+
 /* image */
-#rowTable{
-    border-radius: 100;
+.rowTable{
+    /* margin-bottom: 60px; */
+    border-radius: 100%;
     height: 300px;
     width: 300px;
-    margin-bottom: 60px;
+    display: flex;
+    justify-content:center;
 }
 
 
+
+/* table */
+
+#table {
+    width:300px ;
+    height: 350px;
+}
 
 #empTable{
     text-align: center;
@@ -80,8 +86,11 @@ th{
   width: 150px;
   text-align: center;
   border: 1px solid black;
-  padding: 5px;
+  /* padding: 5px; */
 }
+
+/* footer */
+
 .footer {
     position: absolute;
     bottom: 0;
