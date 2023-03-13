@@ -3,6 +3,8 @@
 const allCv = [];
 let c = 1000;
 
+
+
 function FirstCon(Employee_ID,Full_Name,Department,Level,Salary,IMg) {
 
 
@@ -21,21 +23,6 @@ function FirstCon(Employee_ID,Full_Name,Department,Level,Salary,IMg) {
     allCv.push(this);
 
 }
-
-FirstCon.prototype.Salary =function salary(level) {
-
-    switch (level) {
-        case 'Junior':
-            this.Salary = taxCal(getRandomInt(500, 1000));
-            break;
-        case 'Mid-Senior':
-            this.Salary = taxCal(getRandomInt(1000, 1500));
-            break;
-        case 'Senior':
-            this.Salary = taxCal(getRandomInt(1500, 2000));
-            break;
-    }
-};
 
 FirstCon.prototype.render = function () {
     const empTable = document.getElementById("table");
@@ -69,6 +56,21 @@ function getRandomInt(min, max) {
 function getRandomId() {
     c+=1
     return c;
+};
+
+function salary(level) {
+
+    switch (level) {
+        case 'Junior':
+            return taxCal(getRandomInt(500, 1000));
+
+        case 'Mid-Senior':
+            return taxCal(getRandomInt(1000, 1500));
+
+        case 'Senior':
+            return taxCal(getRandomInt(1500, 2000));
+
+    }
 };
 
 function taxCal(number) {
@@ -113,9 +115,8 @@ function sunBe(event) {
     
     //let employees = { Full_Name: full_name, Department: deparment, Level: level, IMg: img };
     
-    let push=new FirstCon(0,full_name,deparment,level,0,img);
+    new FirstCon(0,full_name,deparment,level,0,img);
 
-    console.log(push);
     runderEmp();
     storge(allCv);
 
@@ -126,18 +127,18 @@ function storge(data){
     localStorage.setItem('CV',cvData);
 }
 
-// getData();
+getData();
 
-// function getData(){
-//     let reArr = localStorage.getItem('CV');
-//     let objArr = JSON.parse(reArr);
-//     for (let i=0;i<objArr.length;i++){
-//         new FirstCon(objArr[i].Employee_ID,
-//             objArr[i].Full_Name,
-//             objArr[i].Department,
-//             objArr[i].Level,
-//             objArr[i].Salary,
-//             objArr[i].IMg);
-//     }
+function getData(){
+    let reArr = localStorage.getItem('CV');
+    let objArr = JSON.parse(reArr);
+    for (let i=0;i<objArr.length;i++){
+        new FirstCon(objArr[i].Employee_ID,
+            objArr[i].Full_Name,
+            objArr[i].Department,
+            objArr[i].Level,
+            objArr[i].Salary,
+            objArr[i].IMg);
+    }
     
-// }
+}
