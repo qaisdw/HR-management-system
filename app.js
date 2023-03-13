@@ -1,144 +1,95 @@
 'use strict';
 
-const allCv = [];
-let c = 1000;
+function renderTable(arr){
+    let table1=document.getElementById("table1");
+    let teEl = document.createElement("tr");
+    table1.appendChild(teEl);
 
+    let tdEl = document.createElement("td");
+    tdEl.textContent=arr.Department;
+    table1.appendChild(tdEl);
 
+    let tdEl1 = document.createElement("td");
+    tdEl1.textContent=numbCal1(arr.Department);
+    table1.appendChild(tdEl1);
 
-function FirstCon(Employee_ID,Full_Name,Department,Level,Salary,IMg) {
+    let tdEl2 = document.createElement("td");
+    tdEl2.textContent=avgSalaCal(arr);
+    table1.appendChild(tdEl2);
 
+    let tdEl3 = document.createElement("td");
+    tdEl3.textContent=totalSal(arr);
+    table1.appendChild(tdEl3);
 
-    this.Employee_ID = Employee_ID;
-
-    this.Full_Name = Full_Name;
-
-    this.Department = Department;
-
-    this.Level = Level;
-
-    this.Image_URL = IMg;
-
-    this.Salary = 0;
-
-    allCv.push(this);
-
-}
-
-FirstCon.prototype.render = function () {
-    const empTable = document.getElementById("table");
-    
-    empTable.innerHTML = `<img class="rowTable" src=${this.Image_URL} alt="image">
-    <table class="rowTable">
-        <tr>
-            <th>${this.Employee_ID}</th>
-            <th>${this.Full_Name}</th>
-        </tr>
-        <tr>
-            <th>${this.Department}</th>
-            <th>${this.Level}</th>
-        </tr>
-    </table>`;
-    
 };
 
-function runderEmp() {
-    for(let i = 0 ; i < allCv.length ; i++){
-        allCv[i].Employee_ID=getRandomId();
-        allCv[i].Salary=salary(allCv[i].Level)
-        allCv[i].render();
-    }
-};
-
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
-function getRandomId() {
-    c+=1
-    return c;
-};
-
-function salary(level) {
-
-    switch (level) {
+let sumJ=0,sumMid=0,sumS=0;
+function totalSal(salArr1){
+    switch (salArr1.Level) {
         case 'Junior':
-            return taxCal(getRandomInt(500, 1000));
+            return sumJ+=salArr1.Salary;
 
         case 'Mid-Senior':
-            return taxCal(getRandomInt(1000, 1500));
+            return sumMid+=salArr1.Salary;
 
         case 'Senior':
-            return taxCal(getRandomInt(1500, 2000));
+            return sumS+=salArr1.Salary;
 
+    }
+}
+
+let junCal=0,midCal=0,senCal=0;
+
+function salCal(jun,sal){
+    let sum=0;
+    sum+=sal;
+    return sum/jun;
+}
+
+
+function avgSalaCal(salArr){
+    switch (salArr.Level) {
+        case 'Junior':
+            junCal+=1;
+            return salCal(junCal,salArr.Salary);
+
+        case 'Mid-Senior':
+            midCal+=1;
+            return salCal(midCal,salArr.Salary);
+
+        case 'Senior':
+            senCal+=1;
+            return salCal(senCal,salArr.Salary);
+
+    }
+}
+
+let admCon=0,marCon=0,devCon=0,finCon=0;
+
+function numbCal1(arr2){
+    switch (arr2){
+        case "Administration":
+            return admCon+=1;
+        case "Marketing":
+            return marCon+=1;
+        case "Development":
+            return devCon+=1;
+        case "Finance":
+            return finCon+=1;
+        }
+}
+
+function runderEmp(objAr) {
+    for(let i = 0 ; i < objAr.length ; i++){
+        renderTable(objAr[i]);
     }
 };
 
-function taxCal(number) {
-    var tax = 7.5;
-    var Sales_tax_rate = tax / 100;
-    var Sales_tax = number * Sales_tax_rate;
-    return (number - Sales_tax);
-};
-
-// function employeeGen(employee) {
-//     let EmpData = [];
-//     for (const object of employee) {
-//         EmpData.push(new FirstCon(object));
-//     }
-
-//     return EmpData;
-// };
-
-// function renderEmp(emp) {
-//     emp.render();
-// }
-
-let sec = document.getElementById('main');
-let emp = document.getElementById("form1");
-let btn = document.getElementById("btn");
-btn.addEventListener("click", color)
-function color(event) {
-    let tab = document.getElementById("table");
-    tab.style.backgroundColor = "silver";
-};
-
-emp.addEventListener("submit", sunBe);
-
-function sunBe(event) {
-    event.preventDefault();
-
-    let full_name = event.target.fullname.value;
-    let deparment = event.target.Department.value;
-    let level = event.target.Level.value;
-    let img = event.target.img.value;
-
-    
-    //let employees = { Full_Name: full_name, Department: deparment, Level: level, IMg: img };
-    
-    new FirstCon(0,full_name,deparment,level,0,img);
-
-    runderEmp();
-    storge(allCv);
-
-};
-
-function storge(data){
-    let cvData = JSON.stringify(data);
-    localStorage.setItem('CV',cvData);
-}
-
-getData();
-
-function getData(){
+function renderData(){
     let reArr = localStorage.getItem('CV');
     let objArr = JSON.parse(reArr);
-    for (let i=0;i<objArr.length;i++){
-        new FirstCon(objArr[i].Employee_ID,
-            objArr[i].Full_Name,
-            objArr[i].Department,
-            objArr[i].Level,
-            objArr[i].Salary,
-            objArr[i].IMg);
-    }
-    
-}
+    console.log("reArr ",reArr);
+    console.log("objArr :",objArr);
+    runderEmp(objArr);
+};
+renderData();
