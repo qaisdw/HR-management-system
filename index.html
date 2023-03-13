@@ -1,26 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <link rel="stylesheet" href="./style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./app.js"></script>
     <title>Document</title>
 </head>
+
 <body>
     <div class="header">
-        <a href="./accounting.html">accounting</a>
+        <h1>CVchecker</h1>
+        <a class="next" href="./accounting.html">accounting</a>
     </div>
     <div class="main">
 
+        <form id="form1">
+            <label for="fullname">
+                Full name:
+                <input type="text" id="fullname" name="fullname">
+            </label><br>
+            <label for="Department">
+                Select a Department:
+                <select name="Department" id="Department">
+                    <option value="Administration">Administration</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Development">Development</option>
+                    <option value="Finance">Finance</option>
+                </select>
+            </label><br>
+            
+            <label for="Level">
+                Select a Department:
+                <select name="Level" id="Level">
+                    <option value="Junior">Junior</option>
+                    <option value="Mid-Senior">Mid-Senior</option>
+                    <option value="Senior">Senior</option>
+                </select>
+            </label><br>
+
+            <label for="img">
+                enter image URL
+                <input type="text" id="img" name="img">
+            </label><br>
+
+            <button id="btn" type="submit">Submit</button>
+        </form>
+        <div id ='table'>
+            <section id="rowTable">
+
+            </section>
+            <table id="empTable">
+            </table>
+        </div>
     </div>
     <div class="footer">
-        <a href="">instgram</a>
-        <a href="">twitter</a>
-        <a href="">facebook</a>
+        <a class="link" href="">instgram</a>
+        <a class="link" href="">twitter</a>
+        <a class="link" href="">facebook</a>
         <h4>Copyright &copy 1991-2080</h4>
     </div>
-    
-    
+
+
     <script src="./app.js"></script>
 
 </body>
+
 </html>
