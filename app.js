@@ -35,24 +35,35 @@ FirstCon.prototype.SalaryCal = function salary(level) {
 };
 
 FirstCon.prototype.render = function () {
-    const empTable = document.getElementById("empTable");
-    const rowTable = document.getElementById("rowTable");
-    const imgEL = document.createElement("img")
-    imgEL.src=this.Image_URL;
-    rowTable.appendChild(imgEL);
-    empTable.innerHTML=`
-    <tr>
-        <th>${this.Employee_ID}</th>
-        <th>${this.Full_Name}</th>
-    </tr>
-    <tr>
-        <th>${this.Department}</th>
-        <th>${this.Level}</th>
-    </tr>
-    `;
+    const empTable = document.getElementById("table");
+    //const rowTable = document.getElementById("rowTable");
+    empTable.innerHTML = `<img class="rowTable" src=${this.Image_URL} alt="image">
+    <table class="rowTable">
+        <tr>
+            <th>${this.Employee_ID}</th>
+            <th>${this.Full_Name}</th>
+        </tr>
+        <tr>
+            <th>${this.Department}</th>
+            <th>${this.Level}</th>
+        </tr>
+    </table>`;
+    // const imgEL = document.createElement("img")
+    // imgEL.src = this.Image_URL;
+    // rowTable.appendChild(imgEL);
+    // empTable.innerHTML = `
+    // <tr>
+    //     <th>${this.Employee_ID}</th>
+    //     <th>${this.Full_Name}</th>
+    // </tr>
+    // <tr>
+    //     <th>${this.Department}</th>
+    //     <th>${this.Level}</th>
+    // </tr>
+    // `;
 };
 
-function runderEmp(emp){
+function runderEmp(emp) {
     emp.render()
 }
 
@@ -87,10 +98,10 @@ function taxCal(number) {
 let sec = document.getElementById('main');
 let emp = document.getElementById("form1");
 let btn = document.getElementById("btn");
-btn.addEventListener("click",color)
-function color(event){
+btn.addEventListener("click", color)
+function color(event) {
     let tab = document.getElementById("table");
-    tab.style.backgroundColor= "silver";
+    tab.style.backgroundColor = "silver";
 }
 emp.addEventListener("submit", sunBe);
 function sunBe(event) {
@@ -105,6 +116,6 @@ function sunBe(event) {
 
     //employeeGen()
     let push = new FirstCon(employees);
-    
+
     runderEmp(push);
 };
