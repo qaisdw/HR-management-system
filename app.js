@@ -9,24 +9,17 @@ function FirstCon(Employee_ID,Full_Name,Department,Level,Salary,IMg) {
 
 
     this.Employee_ID = Employee_ID;
-
     this.Full_Name = Full_Name;
-
     this.Department = Department;
-
     this.Level = Level;
-
     this.Image_URL = IMg;
-
     this.Salary = 0;
-
     allCv.push(this);
 
 }
-
 FirstCon.prototype.render = function () {
     const empTable = document.getElementById("table");
-    
+
     empTable.innerHTML = `<img class="rowTable" src=${this.Image_URL} alt="image">
     <table class="rowTable">
         <tr>
@@ -40,7 +33,6 @@ FirstCon.prototype.render = function () {
     </table>`;
     
 };
-
 function runderEmp() {
     for(let i = 0 ; i < allCv.length ; i++){
         allCv[i].Employee_ID=getRandomId();
@@ -48,11 +40,9 @@ function runderEmp() {
         allCv[i].render();
     }
 };
-
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
-
 function getRandomId() {
     c+=1
     return c;
@@ -85,10 +75,8 @@ function taxCal(number) {
 //     for (const object of employee) {
 //         EmpData.push(new FirstCon(object));
 //     }
-
 //     return EmpData;
 // };
-
 // function renderEmp(emp) {
 //     emp.render();
 // }
@@ -101,27 +89,24 @@ function color(event) {
     let tab = document.getElementById("table");
     tab.style.backgroundColor = "silver";
 };
-
 emp.addEventListener("submit", sunBe);
-
 function sunBe(event) {
     event.preventDefault();
-
     let full_name = event.target.fullname.value;
     let deparment = event.target.Department.value;
     let level = event.target.Level.value;
     let img = event.target.img.value;
 
-    
     //let employees = { Full_Name: full_name, Department: deparment, Level: level, IMg: img };
-    
+
+    //let push=new FirstCon(0,full_name,deparment,level,0,img);
     new FirstCon(0,full_name,deparment,level,0,img);
 
+    
     runderEmp();
     storge(allCv);
 
 };
-
 function storge(data){
     let cvData = JSON.stringify(data);
     localStorage.setItem('CV',cvData);
@@ -140,5 +125,6 @@ function getData(){
             objArr[i].Salary,
             objArr[i].IMg);
     }
-    
+
+
 }
