@@ -80,9 +80,12 @@ function numbCal1(arr2){
 }
 
 function runderEmp(objAr) {
-    for(let i = 0 ; i < objAr.length ; i++){
-        renderTable(objAr[i]);
+    if (objAr != null){
+        for(let i = 0 ; i < objAr.length ; i++){
+            renderTable(objAr[i]);
+        }
     }
+    
 };
 
 function renderData(){
