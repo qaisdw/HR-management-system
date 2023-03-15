@@ -77,6 +77,10 @@ button{
     height: 350px;
 }
 
+#table1{
+    margin-left:30% ;
+}
+
 #empTable{
     text-align: center;
     display: block;
@@ -92,7 +96,7 @@ th{
 /* footer */
 
 .footer {
-    position: absolute;
+    position:fixed;
     bottom: 0;
     width: 100%;
     display: block;
@@ -103,4 +107,9 @@ th{
 
 .link{
     margin: 10px 20px;
+}
+
+.btn2{
+    margin-top: 20px;
+    margin-left: 50%;
 }
